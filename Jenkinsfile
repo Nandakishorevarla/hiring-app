@@ -17,13 +17,13 @@ pipeline {
             steps {
                 withCredentials([string(credentialsId: 'docker-hub', variable: 'hubPwd')]) {
                     sh "docker login -u kishore6763 -p ${Vnk@6763}"
-                    sh "docker push sabair0509/hiring-app:$BUILD_NUMBER"
+                    sh "docker push kishore6763/hiring-app:$BUILD_NUMBER"
                 }
             }
         }
         stage('Checkout K8S manifest SCM'){
             steps {
-              git branch: 'main', url: 'https://github.com/betawins/Hiring-app-argocd.git'
+              git branch: 'main', url: 'https://github.com/Nandakishorevarala/Hiring-app-argocd.git'
             }
         } 
         stage('Update K8S manifest & push to Repo'){
@@ -37,7 +37,7 @@ pipeline {
                         git add .
                         git commit -m 'Updated the deploy yaml | Jenkins Pipeline'
                         git remote -v
-                        git push https://$GIT_USERNAME:$GIT_PASSWORD@github.com/betawins/Hiring-app-argocd.git main
+                        git push https://$GIT_USERNAME:$GIT_PASSWORD@github.com/nandakishorevarala/Hiring-app-argocd.git main
                         '''                        
                       }
                   }
