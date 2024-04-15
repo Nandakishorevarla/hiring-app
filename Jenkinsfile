@@ -10,13 +10,13 @@ pipeline {
        
         stage('Docker Build') {
             steps {
-                sh "docker build . -t sabair0509/hiring-app:$BUILD_NUMBER"
+                sh "docker build . -t kishore6763/hiring-app:$BUILD_NUMBER"
             }
         }
         stage('Docker Push') {
             steps {
                 withCredentials([string(credentialsId: 'docker-hub', variable: 'hubPwd')]) {
-                    sh "docker login -u sabair0509 -p ${hubPwd}"
+                    sh "docker login -u kishore6763 -p ${Vnk@6763}"
                     sh "docker push sabair0509/hiring-app:$BUILD_NUMBER"
                 }
             }
